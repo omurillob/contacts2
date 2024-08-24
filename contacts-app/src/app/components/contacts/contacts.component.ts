@@ -1,21 +1,29 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Contact } from '../../models/contact.interface';
+import { ContactService } from '../../services/contact.service';
 
 @Component({
   selector: 'app-contacts',
   templateUrl: './contacts.component.html',
   styleUrl: './contacts.component.scss',
 })
-export class ContactsComponent {
-  contacts: Contact[] = [
-    { firstName: 'John', lastName: 'Doe', phoneNumber: '123-456-7890' },
-    { firstName: 'Jane', lastName: 'Smith', phoneNumber: '987-654-3210' },
-  ];
+export class ContactsComponent implements OnInit {
+  contacts: Contact[] = [];
+  selectedContact: Contact | null = null;
 
-  selectedContact!: Contact;
+  constructor(private contactService: ContactService) {}
 
-  selectContact(contact: Contact) {
-console.log(contact);
+  ngOnInit(): void {
+    this.contacts = this.contactService.getContacts();
+  }
+
+  selectContact(contact: Contact): void {
     this.selectedContact = contact;
+  }
+
+  updateContact(): void {
+    if (this.selectedContact) {
+      this.contactService.updateContact(this.selectedContact);
+    }
   }
 }

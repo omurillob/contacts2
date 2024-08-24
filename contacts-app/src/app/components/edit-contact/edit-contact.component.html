@@ -1,0 +1,37 @@
+<!-- edit-contact.component.html -->
+<div *ngIf="contact">
+  <h2>Edit Contact</h2>
+  <form (ngSubmit)="saveChanges()">
+    <div>
+      <label for="firstName">First Name:</label>
+      <input
+        id="firstName"
+        [(ngModel)]="contact.firstName"
+        name="firstName"
+        required
+      />
+    </div>
+    <div>
+      <label for="lastName">Last Name:</label>
+      <input
+        id="lastName"
+        [(ngModel)]="contact.lastName"
+        name="lastName"
+        required
+      />
+    </div>
+    <div>
+      <label for="phoneNumber">Phone Number:</label>
+      <input
+        id="phoneNumber"
+        [(ngModel)]="contact.phoneNumber"
+        name="phoneNumber"
+        required
+      />
+    </div>
+    <button type="submit">Save Changes</button>
+  </form>
+</div>
+<div *ngIf="!contact">
+  <p>Loading contact details...</p>
+</div>
