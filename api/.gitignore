@@ -1,0 +1,21 @@
+# .NET Core
+bin/
+obj/
+*.dll
+*.pdb
+
+# Visual Studio specific
+*.suo
+*.user
+*.vshost.exe
+*.tmp
+*.log
+*.cache
+*.vsi
+*.vsix
+
+# NuGet package cache
+packages/
+
+# IDE-specific files
+*.vs

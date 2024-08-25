@@ -26,7 +26,6 @@ export class EditContactComponent implements OnInit {
         },
         error: (err) => {
           console.error('Error fetching contact:', err);
-          this.router.navigate(['/contacts']);
         },
       });
     }
