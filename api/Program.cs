@@ -1,7 +1,9 @@
 using System.Text;
 using contacts2.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using contacts2;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -24,6 +26,14 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     });
 
 builder.Services.AddScoped<ContactService>();
+
+var connString = "Host=localhost;Database=mydatabase;Username=postgres;Password=123@Queso;";
+
+//var connString = "Server=your_postgres_server_address;Port=5432;Database=your_database_name;User Id=your_username;Password=your_password;";
+
+builder.Services.AddDbContext<ContactsDbContext>(options =>
+        options.UseNpgsql(connString));
+
 
 builder.Services.AddControllers();
 
