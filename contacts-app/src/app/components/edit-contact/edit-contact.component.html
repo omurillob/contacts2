@@ -1,6 +1,5 @@
-<!-- edit-contact.component.html -->
 <div *ngIf="contact">
-  <h2>Edit Contact</h2>
+  <h2>{{ contact.id > 0? "Edit": "Add"}} Contact</h2>
   <form (ngSubmit)="saveChanges()">
     <div>
       <label for="firstName">First Name:</label>

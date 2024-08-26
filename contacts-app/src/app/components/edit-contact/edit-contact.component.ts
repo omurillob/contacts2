@@ -28,6 +28,8 @@ export class EditContactComponent implements OnInit {
           console.error('Error fetching contact:', err);
         },
       });
+    } else {
+      this.contact = { id: 0, firstName: '', lastName: '', phoneNumber: '' };
     }
   }
 

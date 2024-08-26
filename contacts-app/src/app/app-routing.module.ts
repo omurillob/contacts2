@@ -7,6 +7,7 @@ import { EditContactComponent } from './components/edit-contact/edit-contact.com
 const routes: Routes = [
   { path: '', component: LoginComponent },
   { path: 'contacts', component: ContactsComponent },
+  { path: 'new-contact', component: EditContactComponent },
   { path: 'edit-contact/:id', component: EditContactComponent },
   { path: '**', redirectTo: '' },
 ];

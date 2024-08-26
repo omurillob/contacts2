@@ -20,7 +20,7 @@ namespace contacts2.Services
             return _contacts.FirstOrDefault(c => c.Id == id);
         }
 
-        public void UpdateContact(Contact contact)
+        public void AddorUpdateContact(Contact contact)
         {
             var existingContact = _contacts.FirstOrDefault(c => c.Id == contact.Id);
             if (existingContact != null)
@@ -28,6 +28,11 @@ namespace contacts2.Services
                 existingContact.FirstName = contact.FirstName;
                 existingContact.LastName = contact.LastName;
                 existingContact.PhoneNumber = contact.PhoneNumber;
+            }
+            else
+            {
+                contact.Id = _contacts.Max(x => x.Id) + 1;
+                _contacts.Add(contact);
             }
         }
     }
