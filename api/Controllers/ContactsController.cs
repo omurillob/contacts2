@@ -1,10 +1,11 @@
-using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using contacts2.Services;
 using contacts2.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace contacts2.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class ContactsController(ContactService contactService) : ControllerBase
@@ -35,7 +36,7 @@ namespace contacts2.Controllers
                 return BadRequest();
             }
 
-            contactService.UpdateContact(contact);
+            contactService.AddorUpdateContact(contact);
 
             return NoContent();
         }

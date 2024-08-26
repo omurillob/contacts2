@@ -2,11 +2,12 @@ import { Injectable } from '@angular/core';
 import { Contact } from '../models/contact.interface';
 import { map, Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { ApiRequestOptions } from './api-request-options';
 @Injectable({
   providedIn: 'root',
 })
 export class ContactService {
-  readonly url = 'http://localhost:5194/api/contacts';
+  private readonly url = ApiRequestOptions.Url + '/contacts';
 
   constructor(private http: HttpClient) {}
 

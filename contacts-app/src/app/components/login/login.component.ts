@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
+import { catchError, tap, throwError } from 'rxjs';
 
 @Component({
   selector: 'app-login',
@@ -8,19 +10,35 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent {
-  email = new FormControl('', [Validators.required, Validators.email]);
-  password = new FormControl('', [Validators.required]);
+  email = new FormControl('omurillob@gmail.com', [
+    Validators.required,
+    Validators.email,
+  ]);
+  password = new FormControl('1234', [Validators.required]);
 
   loginForm = new FormGroup({
     email: this.email,
     password: this.password,
   });
 
-  constructor(private router: Router) {}
-  
+  constructor(private router: Router, private authService: AuthService) {}
+
   onSubmit() {
-    //if (this.loginForm.valid) {
-      this.router.navigate(['/contacts']);
-    //}
+    if (this.loginForm.valid && this.email.value && this.password.value) {
+      this.authService
+        .login(this.email.value, this.password.value)
+        .pipe(
+          tap(() => {
+            // Handle success
+            this.router.navigate(['/contacts']);
+          }),
+          catchError((error) => {
+            // Handle error
+            console.error('Login error:', error);
+            return throwError(() => new Error('Login failed'));
+          })
+        )
+        .subscribe();
+    }
   }
 }
