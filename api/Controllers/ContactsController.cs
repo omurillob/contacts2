@@ -8,7 +8,7 @@ namespace contacts2.Controllers
     [Authorize]
     [Route("api/[controller]")]
     [ApiController]
-    public class ContactsController(ContactService contactService) : ControllerBase
+    public class ContactsController(IContactService contactService) : ControllerBase
     {
         [HttpGet]
         public IActionResult GetContacts()

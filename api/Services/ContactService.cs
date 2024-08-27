@@ -2,7 +2,7 @@ using contacts2.Models;
 
 namespace contacts2.Services
 {
-    public class ContactService(ContactsDbContext context)
+    public class ContactService(ContactsDbContext context) : IContactService
     {
         public List<Contact> GetContacts()
         {

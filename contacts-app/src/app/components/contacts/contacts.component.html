@@ -1,4 +1,5 @@
 <div class="container mt-5">
+  <h2>Contacts</h2>
   <div class="row align-items-center mb-3">
     <div class="col-md-auto">
       <a class="btn btn-primary" [routerLink]="['/new-contact']">Add Contact</a>
@@ -21,7 +22,11 @@
             <td>{{ contact.lastName }}</td>
             <td>{{ contact.phoneNumber }}</td>
             <td>
-              <a [routerLink]="['/edit-contact', contact.id]" class="btn btn-sm btn-primary">Edit</a>
+              <a
+                [routerLink]="['/edit-contact', contact.id]"
+                class="btn btn-sm btn-primary"
+                >Edit</a
+              >
             </td>
           </tr>
         </tbody>

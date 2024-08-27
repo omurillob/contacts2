@@ -25,11 +25,10 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
         };
     });
 
-builder.Services.AddScoped<ContactService>();
+builder.Services.AddScoped<IAuthService, AuthService>();
+builder.Services.AddScoped<IContactService, ContactService>();
 
-var connString = "Host=localhost;Database=mydatabase;Username=postgres;Password=123@Queso;";
-
-//var connString = "Server=your_postgres_server_address;Port=5432;Database=your_database_name;User Id=your_username;Password=your_password;";
+var connString = builder.Configuration.GetConnectionString("DefaultConnection");
 
 builder.Services.AddDbContext<ContactsDbContext>(options =>
         options.UseNpgsql(connString));
@@ -57,7 +56,7 @@ app.MapControllers();
 
 app.UseCors(builder =>
 {
-    builder.WithOrigins("http://localhost:60871")
+    builder.WithOrigins("http://localhost:50438")
            .AllowAnyMethod()
            .AllowAnyHeader();
 });

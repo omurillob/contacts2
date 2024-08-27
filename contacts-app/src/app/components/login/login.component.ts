@@ -29,11 +29,9 @@ export class LoginComponent {
         .login(this.email.value, this.password.value)
         .pipe(
           tap(() => {
-            // Handle success
             this.router.navigate(['/contacts']);
           }),
           catchError((error) => {
-            // Handle error
             console.error('Login error:', error);
             return throwError(() => new Error('Login failed'));
           })
