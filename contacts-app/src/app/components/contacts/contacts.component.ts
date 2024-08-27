@@ -9,7 +9,6 @@ import { ContactService } from '../../services/contact.service';
 })
 export class ContactsComponent implements OnInit {
   contacts: Contact[] = [];
-  selectedContact: Contact | null = null;
 
   constructor(private contactService: ContactService) {}
 
@@ -17,15 +16,5 @@ export class ContactsComponent implements OnInit {
     this.contactService.getContacts().subscribe((data) => {
       this.contacts = data;
     });
-  }
-
-  selectContact(contact: Contact): void {
-    this.selectedContact = contact;
-  }
-
-  updateContact(): void {
-    if (this.selectedContact) {
-      this.contactService.updateContact(this.selectedContact);
-    }
   }
 }

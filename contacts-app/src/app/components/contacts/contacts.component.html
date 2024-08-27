@@ -1,26 +1,31 @@
-<a class="btn btn-primary" [routerLink]="['/new-contact']">Add</a>
-<table class="table table-bordered table-hover">
-  <thead>
-    <tr>
-      <th>First Name</th>
-      <th>Last Name</th>
-      <th>Phone Number</th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let contact of contacts">
-      <td>{{ contact.firstName }}</td>
-      <td>{{ contact.lastName }}</td>
-      <td>{{ contact.phoneNumber }}</td>
-      <a [routerLink]="['/edit-contact', contact.id]">Edit</a>
-    </tr>
-  </tbody>
-</table>
-
-<div *ngIf="selectedContact">
-  <input type="text" [(ngModel)]="selectedContact.firstName" />
-  <input type="text" [(ngModel)]="selectedContact.lastName" />
-  <input type="text" [(ngModel)]="selectedContact.phoneNumber" />
-  <button (click)="updateContact()">Save Changes</button>
+<div class="container mt-5">
+  <div class="row align-items-center mb-3">
+    <div class="col-md-auto">
+      <a class="btn btn-primary" [routerLink]="['/new-contact']">Add Contact</a>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <table class="table table-striped table-hover">
+        <thead>
+          <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Phone Number</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let contact of contacts">
+            <td>{{ contact.firstName }}</td>
+            <td>{{ contact.lastName }}</td>
+            <td>{{ contact.phoneNumber }}</td>
+            <td>
+              <a [routerLink]="['/edit-contact', contact.id]" class="btn btn-sm btn-primary">Edit</a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
 </div>

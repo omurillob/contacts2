@@ -1,36 +1,31 @@
-<div *ngIf="contact">
-  <h2>{{ contact.id > 0? "Edit": "Add"}} Contact</h2>
-  <form (ngSubmit)="saveChanges()">
-    <div>
-      <label for="firstName">First Name:</label>
-      <input
-        id="firstName"
-        [(ngModel)]="contact.firstName"
-        name="firstName"
-        required
-      />
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-header">
+          {{ contact != null && contact.id > 0 ? "Edit Contact" : "Add New Contact" }}
+        </div>
+        <div class="card-body">
+          <form *ngIf="contact" (ngSubmit)="saveChanges()">
+            <div class="form-group">
+              <label for="firstName">First Name:</label>
+              <input type="text" class="form-control" id="firstName" [(ngModel)]="contact.firstName" name="firstName" required>
+            </div>
+            <div class="form-group">
+              <label for="lastName">Last Name:</label>
+              <input type="text" class="form-control" id="lastName" [(ngModel)]="contact.lastName" name="lastName" required>
+            </div>
+            <div class="form-group">
+              <label for="phoneNumber">Phone Number:</label>
+              <input type="text" class="form-control" id="phoneNumber" [(ngModel)]="contact.phoneNumber" name="phoneNumber" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Save Changes</button>
+          </form>
+          <div *ngIf="!contact">
+            <p>Loading contact details...</p>
+          </div>
+        </div>
+      </div>
     </div>
-    <div>
-      <label for="lastName">Last Name:</label>
-      <input
-        id="lastName"
-        [(ngModel)]="contact.lastName"
-        name="lastName"
-        required
-      />
-    </div>
-    <div>
-      <label for="phoneNumber">Phone Number:</label>
-      <input
-        id="phoneNumber"
-        [(ngModel)]="contact.phoneNumber"
-        name="phoneNumber"
-        required
-      />
-    </div>
-    <button type="submit">Save Changes</button>
-  </form>
-</div>
-<div *ngIf="!contact">
-  <p>Loading contact details...</p>
+  </div>
 </div>
